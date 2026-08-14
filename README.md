@@ -4,6 +4,8 @@
 
 **[👉 在线使用](https://topcss.github.io/mindmap.html?dataset=blank)** — 无需安装，打开浏览器即可开始
 
+![MindMap MT 网页版界面](./docs/mindmap-web-screenshot.png)
+
 ## 我们的出发点
 
 思维导图是个人与团队组织思想的基本工具。然而放眼市场，现有产品都差了一口气：
