@@ -1,0 +1,9 @@
+.vscode/**
+.vscode-test/**
+**/*.map
+**/.*.swp
+node_modules/**
+out/**
+conversations/**
+.vsix
+.mt

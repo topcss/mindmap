@@ -1,0 +1,85 @@
+{
+  "name": "mindmap-mt",
+  "displayName": "MindMap MT",
+  "description": "用于 .mt 思维导图文件的图形化编辑器，支持自动保存，可在资源管理器中默认以本编辑器打开。",
+  "version": "0.0.2",
+  "publisher": "mt-editor",
+  "icon": "icon.png",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./extension.js",
+  "contributes": {
+    "languages": [
+      {
+        "id": "mt",
+        "aliases": [
+          "MT",
+          "mt"
+        ],
+        "extensions": [
+          ".mt"
+        ]
+      }
+    ],
+    "customEditors": [
+      {
+        "viewType": "mtEditor.text",
+        "displayName": "MindMap MT",
+        "selector": [
+          {
+            "filenamePattern": "*.mt"
+          }
+        ],
+        "priority": "default"
+      }
+    ],
+    "commands": [
+      {
+        "command": "mtEditor.openWithEditor",
+        "title": "用 MT 编辑器打开",
+        "category": "MT"
+      },
+      {
+        "command": "mtEditor.openAsText",
+        "title": "以文本方式打开",
+        "category": "MT"
+      }
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "mtEditor.openWithEditor",
+          "when": "resourceExtname == .mt",
+          "group": "mt@1"
+        },
+        {
+          "command": "mtEditor.openAsText",
+          "when": "resourceExtname == .mt",
+          "group": "mt@2"
+        }
+      ],
+      "editor/title": [
+        {
+          "command": "mtEditor.openWithEditor",
+          "when": "resourceExtname == .mt && editorLangId != mt",
+          "group": "navigation"
+        }
+      ],
+      "commandPalette": [
+        {
+          "command": "mtEditor.openWithEditor",
+          "when": "false"
+        },
+        {
+          "command": "mtEditor.openAsText",
+          "when": "false"
+        }
+      ]
+    }
+  }
+}

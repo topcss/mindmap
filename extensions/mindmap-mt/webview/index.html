@@ -1,0 +1,296 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src __CSP_SOURCE__ data:; style-src __CSP_SOURCE__ 'unsafe-inline'; script-src __CSP_SOURCE__ 'unsafe-inline' 'unsafe-eval'; font-src __CSP_SOURCE__;">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>思维导图极速版</title>
+    <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+    <div id="topbar">
+        <div class="menu-container">
+            <button class="menu-btn">
+                <img class="lucide-icon" src="./icons/file-text.svg" />
+                <span>文件</span>
+                <img class="lucide-icon menu-caret" src="./icons/chevron-down.svg" />
+            </button>
+            <div class="menu-dropdown" id="file-menu">
+                <button class="menu-item" id="import-md-btn"><img class="lucide-icon" src="./icons/upload.svg" /><span>导入 Markdown</span></button>
+                <button class="menu-item" id="export-md-btn"><img class="lucide-icon" src="./icons/download.svg" /><span>导出 Markdown</span></button>
+                <button class="menu-item" id="export-svg-btn"><img class="lucide-icon" src="./icons/file-image.svg" /><span>导出 SVG</span></button>
+            </div>
+        </div>
+        <div class="menu-container">
+            <button class="menu-btn">
+                <img class="lucide-icon" src="./icons/pencil.svg" />
+                <span>编辑</span>
+                <img class="lucide-icon menu-caret" src="./icons/chevron-down.svg" />
+            </button>
+            <div class="menu-dropdown" id="node-menu">
+                <button class="menu-item" id="undo-btn" disabled><img class="lucide-icon" src="./icons/undo-2.svg" /><span>撤销</span><span class="shortcut">Ctrl+Z</span></button>
+                <button class="menu-item" id="redo-btn" disabled><img class="lucide-icon" src="./icons/redo-2.svg" /><span>重做</span><span class="shortcut">Ctrl+Y</span></button>
+                <div class="menu-divider"></div>
+                <button class="menu-item" id="search-btn"><img class="lucide-icon" src="./icons/search.svg" /><span>搜索/替换</span><span class="shortcut">Ctrl+F</span></button>
+                <div class="menu-divider"></div>
+                <button class="menu-item" id="copy-node-btn" disabled><img class="lucide-icon" src="./icons/copy.svg" /><span>复制节点</span><span class="shortcut">Ctrl+C</span></button>
+                <button class="menu-item" id="paste-node-btn" disabled><img class="lucide-icon" src="./icons/clipboard-paste.svg" /><span>粘贴节点</span><span class="shortcut">Ctrl+V</span></button>
+                <div class="menu-divider"></div>
+                <button class="menu-item" id="add-child-btn" disabled><img class="lucide-icon" src="./icons/git-branch-plus.svg" /><span>添加子节点</span><span class="shortcut">Tab</span></button>
+                <button class="menu-item" id="add-sibling-btn" disabled><img class="lucide-icon" src="./icons/plus.svg" /><span>添加同级节点</span><span class="shortcut">Enter</span></button>
+                <div class="menu-divider"></div>
+                <button class="menu-item" id="delete-node-btn" disabled><img class="lucide-icon" src="./icons/trash-2.svg" /><span>删除节点</span><span class="shortcut">Delete</span></button>
+            </div>
+        </div>
+        <div class="menu-container">
+            <button class="menu-btn">
+                <img class="lucide-icon" src="./icons/eye.svg" />
+                <span>视图</span>
+                <img class="lucide-icon menu-caret" src="./icons/chevron-down.svg" />
+            </button>
+            <div class="menu-dropdown" id="view-menu">
+                <button class="menu-item" id="theme-toggle-btn"><img class="lucide-icon" src="./icons/sun.svg" /><span>切换主题</span></button>
+                <button class="menu-item" id="go-root-btn"><img class="lucide-icon" src="./icons/home.svg" /><span>回到根节点</span><span class="shortcut">Home</span></button>
+                <div class="menu-divider"></div>
+                <button class="menu-item" id="collapse-all-btn"><img class="lucide-icon" src="./icons/shrink.svg" /><span>折叠所有</span></button>
+                <button class="menu-item" id="expand-all-btn"><img class="lucide-icon" src="./icons/expand.svg" /><span>展开所有</span></button>
+                <button class="menu-item" id="expand-level-1"><img class="lucide-icon" src="./icons/layers.svg" /><span>展开到第1级</span></button>
+                <button class="menu-item" id="expand-level-2"><img class="lucide-icon" src="./icons/layers.svg" /><span>展开到第2级</span></button>
+                <button class="menu-item" id="expand-level-3"><img class="lucide-icon" src="./icons/layers.svg" /><span>展开到第3级</span></button>
+                <button class="menu-item" id="expand-level-4"><img class="lucide-icon" src="./icons/layers.svg" /><span>展开到第4级</span></button>
+                <button class="menu-item" id="expand-level-5"><img class="lucide-icon" src="./icons/layers.svg" /><span>展开到第5级</span></button>
+                <div class="menu-divider"></div>
+                <button class="menu-item" id="toggle-zoom-btn"><img class="lucide-icon" src="./icons/zoom-in.svg" /><span>缩放控制</span></button>
+                <button class="menu-item" id="toggle-minimap-btn"><img class="lucide-icon" src="./icons/map.svg" /><span>缩略图</span></button>
+            </div>
+        </div>
+        <div class="menu-container">
+            <button class="menu-btn">
+                <img class="lucide-icon" src="./icons/help-circle.svg" />
+                <span>帮助</span>
+                <img class="lucide-icon menu-caret" src="./icons/chevron-down.svg" />
+            </button>
+            <div class="menu-dropdown" id="help-menu">
+                <button class="menu-item" id="help-btn"><img class="lucide-icon" src="./icons/book-open.svg" /><span>操作说明</span></button>
+                <div class="menu-divider"></div>
+                <button class="menu-item" id="about-btn"><img class="lucide-icon" src="./icons/badge-info.svg" /><span>关于</span></button>
+            </div>
+        </div>
+    </div>
+    <div id="save-overlay" class="save-overlay">
+        <div class="save-content">
+            <img class="save-icon" src="./icons/loader-circle.svg" />
+            <span class="save-text">正在保存...</span>
+            <span class="save-hint">文件保存中，很快就好~</span>
+        </div>
+    </div>
+    <div id="minimap" class="panel-hidden">
+        <div class="viewport-rect"></div>
+    </div>
+    <div id="zoom-control" class="panel-hidden">
+        <button class="zoom-btn zoom-out-btn" type="button" title="缩小">
+            <img class="lucide-icon" src="./icons/minus.svg" />
+        </button>
+        <span class="zoom-value">100%</span>
+        <button class="zoom-btn zoom-in-btn" type="button" title="放大">
+            <img class="lucide-icon" src="./icons/plus.svg" />
+        </button>
+        <button class="zoom-btn zoom-reset-btn" type="button" title="重置">
+            <img class="lucide-icon" src="./icons/rotate-ccw.svg" />
+        </button>
+    </div>
+    <div id="search-panel" class="panel-hidden" role="dialog" aria-label="搜索替换">
+        <div class="search-field">
+            <input id="search-input" class="search-input" placeholder="搜索节点..." />
+            <button id="search-ignorecase-btn" class="search-btn icon-btn search-inline-btn" title="忽略大小写" aria-label="忽略大小写">
+                <img class="lucide-icon" src="./icons/case-sensitive.svg" />
+            </button>
+            <button id="search-regex-btn" class="search-btn icon-btn search-inline-btn" title="正则" aria-label="正则">
+                <img class="lucide-icon" src="./icons/asterisk.svg" />
+            </button>
+            <input type="checkbox" id="search-regex" class="panel-hidden" tabindex="-1" aria-hidden="true" />
+            <input type="checkbox" id="search-ignorecase" class="panel-hidden" tabindex="-1" aria-hidden="true" />
+        </div>
+        <span id="search-count" class="search-count">0/0</span>
+        <div class="search-nav">
+            <button id="search-prev-btn" class="search-btn icon-btn" title="上一个 (Shift+Enter)" aria-label="上一个">
+                <img class="lucide-icon" src="./icons/chevron-left.svg" />
+            </button>
+            <button id="search-next-btn" class="search-btn icon-btn" title="下一个 (Enter)" aria-label="下一个">
+                <img class="lucide-icon" src="./icons/chevron-right.svg" />
+            </button>
+        </div>
+        <input id="replace-input" class="search-input" placeholder="替换为..." />
+        <div class="search-actions">
+            <button id="replace-one-btn" class="search-btn icon-btn" title="替换" aria-label="替换">
+                <img class="lucide-icon" src="./icons/replace.svg" />
+            </button>
+            <button id="replace-all-btn" class="search-btn icon-btn" title="全部替换" aria-label="全部替换">
+                <img class="lucide-icon" src="./icons/replace-all.svg" />
+            </button>
+            <button id="search-close-btn" class="search-btn icon-btn" title="关闭 (Esc)" aria-label="关闭">
+                <img class="lucide-icon" src="./icons/x.svg" />
+            </button>
+        </div>
+    </div>
+    <div id="help-modal" class="modal panel-hidden" role="dialog" aria-modal="true">
+        <div class="modal-backdrop"></div>
+        <div class="modal-card">
+            <div class="modal-header">
+                <div class="modal-title">操作说明</div>
+                <button id="help-close" class="modal-close" type="button" aria-label="关闭" title="关闭">
+                    <img class="lucide-icon" src="./icons/x.svg" />
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="help-section-title">鼠标</div>
+                <ul class="help-list">
+                    <li>左键单击节点：选中节点</li>
+                    <li>Ctrl+左键单击节点：连续选择/取消选择多个节点</li>
+                    <li>左键在空白处拖拽：矩形框选多个节点（框选过程中靠近窗口边缘会自动滚动画布）</li>
+                    <li>拖拽选中的节点：将选中的一个或多个节点移动到目标节点下（支持拖入子节点或插入到同级位置）</li>
+                    <li>右键拖拽：平移视口（拖拽中可移出画布继续）</li>
+                    <li>滚轮：上下滚动画布</li>
+                    <li>Alt+滚轮：左右滚动画布</li>
+                    <li>Ctrl+滚轮：缩放视口</li>
+                    <li>小地图：点击跳转到对应区域；在视口框内按住拖动可平移</li>
+                </ul>
+                <div class="help-section-title">键盘</div>
+                <ul class="help-list">
+                    <li>Home：回到根节点</li>
+                    <li>方向键：在父/子/同级节点之间导航</li>
+                    <li>Enter：在当前节点后新增同级节点</li>
+                    <li>Tab：为当前节点新增子节点</li>
+                    <li>Delete / Backspace：删除选中节点（删除后优先选中同级上一个；若没有同级则选中父节点）</li>
+                    <li>双击 / F2 / 空格：编辑当前选中节点</li>
+                    <li>Ctrl+A：全选</li>
+                    <li>Ctrl+C：复制选中节点（复制为文本树，多行节点用`包裹）</li>
+                    <li>Ctrl+V：将文本粘贴为当前节点的子节点（支持`包裹的多行节点）</li>
+                    <li>Ctrl+Z：撤销（节点增删/改名/粘贴）</li>
+                    <li>Ctrl+Y：重做</li>
+                    <li>Ctrl+0：重置到 100% 实际大小</li>
+                    <li>Esc：取消编辑</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div id="about-modal" class="modal panel-hidden" role="dialog" aria-modal="true">
+        <div class="modal-backdrop"></div>
+        <div class="modal-card">
+            <div class="modal-header">
+                <div class="modal-title">关于</div>
+                <button id="about-close" class="modal-close" type="button" aria-label="关闭" title="关闭">
+                    <img class="lucide-icon" src="./icons/x.svg" />
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="about-content">
+                    <div><span class="modal-label label-inline">版本号：</span><span class="mono">v2.2</span></div>
+                    <div><span class="modal-label label-inline">作者：</span><span>Jack（<a href="mailto:topcss@gmail.com">topcss@gmail.com</a>）</span></div>
+                    <div class="modal-divider"></div>
+                    <div>
+                        <p>
+                            十年前，我基于百度脑图开发了桌面端脑图工具 <a href="https://github.com/NaoTu/DesktopNaotu" target="_blank" rel="noopener noreferrer">DesktopNaotu</a>，并开源发布，为社区贡献了一份绵薄之力。
+                        </p>
+                        <p>
+                            随着技术持续迭代，旧版本受限于早期技术架构，性能瓶颈日益凸显，也难以迭代维护。于是，我决定从零重构，打造全新版本。新版本彻底摆脱旧浏览器兼容的历史包袱，从底层架构到交互逻辑全面革新，聚焦极致用户体验与高性能两大核心，力求打磨出流畅、高效、令人惊艳的产品。
+                        </p>
+                        <p>
+                            真正出色的工具，往往是 "日用而不觉"—— 好用到浑然天成，顺手到毫无阻碍。这正是我追求的目标：当用户使用时，只觉自然流畅、得心应手，毫无违和与卡顿，便是我最大的满足。
+                        </p>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="export-modal" class="modal panel-hidden" role="dialog" aria-modal="true">
+        <div class="modal-backdrop"></div>
+        <div class="modal-card">
+            <div class="modal-header">
+                <div class="modal-title">导出 Markdown</div>
+                <button id="export-close" class="modal-close" type="button" aria-label="关闭" title="关闭">
+                    <img class="lucide-icon" src="./icons/x.svg" />
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="export-row">
+                    <div class="export-field">
+                        <label class="modal-label">导出级别</label>
+                        <select id="export-level" class="modal-select">
+                            <option value="1">只导出1级</option>
+                            <option value="2">导出前2级</option>
+                            <option value="3">导出前3级</option>
+                            <option value="4">导出前4级</option>
+                            <option value="5">导出前5级</option>
+                            <option value="6">导出前6级</option>
+                            <option value="999" selected>全部级别</option>
+                        </select>
+                    </div>
+                    <div class="export-field">
+                        <label class="modal-label">文件名</label>
+                        <input type="text" id="export-filename" value="思维导图" class="modal-input">
+                    </div>
+                </div>
+                <div class="export-preview-wrap">
+                    <label class="modal-label">预览</label>
+                    <textarea id="export-preview" readonly class="modal-textarea">
+                    "></textarea>
+                </div>
+                <div class="export-actions">
+                    <button id="export-copy-btn" class="topbar-btn accent">
+                        <img class="lucide-icon" src="./icons/copy.svg" />
+                        <span>复制内容</span>
+                    </button>
+                    <button id="export-download-btn" class="topbar-btn">
+                        <img class="lucide-icon" src="./icons/download.svg" />
+                        <span>导出文件</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="import-modal" class="modal panel-hidden" role="dialog" aria-modal="true">
+        <div class="modal-backdrop"></div>
+        <div class="modal-card">
+            <div class="modal-header">
+                <div class="modal-title">导入 Markdown</div>
+                <button id="import-close" class="modal-close" type="button" aria-label="关闭" title="关闭">
+                    <img class="lucide-icon" src="./icons/x.svg" />
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="export-preview-wrap">
+                    <label class="modal-label">导入级别</label>
+                    <select id="import-level" class="modal-select">
+                        <option value="1">只导入1级</option>
+                        <option value="2">导入前2级</option>
+                        <option value="3">导入前3级</option>
+                        <option value="4">导入前4级</option>
+                        <option value="5">导入前5级</option>
+                        <option value="6">导入前6级</option>
+                        <option value="999" selected>全部级别</option>
+                    </select>
+                </div>
+                <div class="export-preview-wrap">
+                    <label class="modal-label">Markdown内容</label>
+                    <textarea id="import-content" placeholder="粘贴Markdown内容..." class="modal-textarea"></textarea>
+                </div>
+                <div class="export-actions">
+                    <button id="import-cancel-btn" class="topbar-btn danger">
+                        <img class="lucide-icon" src="./icons/x.svg" />
+                        <span>取消</span>
+                    </button>
+                    <button id="import-confirm-btn" class="topbar-btn">
+                        <img class="lucide-icon" src="./icons/check.svg" />
+                        <span>导入</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./vendor/pixi.min.js"></script>
+    <script src="./app.js"></script>
+</body>
+</html>
