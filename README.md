@@ -2,6 +2,8 @@
 
 > 思维导图是被严重低估的基础设施。在智能体时代，它理应被重新发明。
 
+**[👉 在线使用](https://topcss.github.io/mindmap.html?dataset=blank)** — 无需安装，打开浏览器即可开始
+
 ## 我们的出发点
 
 思维导图是个人与团队组织思想的基本工具。然而放眼市场，现有产品都差了一口气：
@@ -45,7 +47,7 @@
 
 | 场景 | 形态 | 说明 |
 | --- | --- | --- |
-| 随时随地 | [在线单文件版](./mindmap.html) | 单个 HTML 文件，双击即用，零依赖、可离线、可随手分享 |
+| 随时随地 | [在线单文件版](https://topcss.github.io/mindmap.html?dataset=blank) | 打开即用，无需安装，可离线下载 [`mindmap.html`](./mindmap.html) 随手分享 |
 | 写代码的地方 | [VS Code 插件](./extensions/mindmap-mt/) | 在编辑器内直接打开、编辑、自动保存 `.mt` 文件 |
 | 大模型协作 | [LLM 技能](./skills/mindmap-format/) | 教会 AI 书写 `.mt` 格式，让 AI 成为你的导图共创者 |
 
@@ -61,7 +63,7 @@
 
 ## 快速开始
 
-1. **在线使用**：下载 [`mindmap.html`](./mindmap.html)，双击打开即可。
+1. **在线使用**：[点击在线使用](https://topcss.github.io/mindmap.html?dataset=blank)，无需安装；或下载 [`mindmap.html`](./mindmap.html)，双击打开即可离线使用。
 2. **在 VS Code 中使用**：安装 `extensions/mindmap-mt` 打包的插件（或按 `F5` 进入开发调试），双击 `.mt` 文件即获得图形化编辑体验，支持自动保存。
 3. **让 AI 为你生成导图**：将 [`skills/mindmap-format`](./skills/mindmap-format/) 加载到你的 Agent 中，向 AI 说"请帮我生成一份计划思维导图"，它即可输出规范的 `.mt` 文件，在任何场景直接打开。
 
