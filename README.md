@@ -2,7 +2,8 @@
 
 > 思维导图是被严重低估的基础设施。在智能体时代，它理应被重新发明。
 
-**[👉 在线使用](https://topcss.github.io/mindmap.html?dataset=blank)** — 无需安装，打开浏览器即可开始
+- **[👉 PC端 在线使用](https://topcss.github.io/mindmap.html?dataset=blank)** — 无需安装，PC浏览器即可开始
+- **[👉 移动端 在线使用](https://topcss.github.io/mindmap-h5.html?dataset=blank)** — 无需安装，手机浏览器即可开始
 
 ![MindMap MT 网页版界面](./docs/mindmap-web-screenshot.png)
 
