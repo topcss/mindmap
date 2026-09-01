@@ -4737,16 +4737,31 @@
             }
             async function openMtFile() {
                 try {
-                    const [handle] = await window.showOpenFilePicker({
-                        types: [{
-                            description: '思维导图文件',
-                            accept: { 'text/plain': ['.mt'] }
-                        }],
-                        excludeAcceptAllOption: true
-                    });
-                    const file = await handle.getFile();
-                    const text = await file.text();
-                    await loadMtFileContent(text, handle);
+                    if ('showOpenFilePicker' in window) {
+                        const [handle] = await window.showOpenFilePicker({
+                            types: [{
+                                description: '思维导图文件',
+                                accept: { 'text/plain': ['.mt'] }
+                            }],
+                            excludeAcceptAllOption: true
+                        });
+                        const file = await handle.getFile();
+                        const text = await file.text();
+                        await loadMtFileContent(text, handle);
+                    } else {
+                        // Fallback for iOS and other browsers
+                        const input = document.createElement('input');
+                        input.type = 'file';
+                        input.accept = '.mt';
+                        input.onchange = async (e) => {
+                            const file = e.target.files[0];
+                            if (file) {
+                                const text = await file.text();
+                                await loadMtFileContent(text, null);
+                            }
+                        };
+                        input.click();
+                    }
                 } catch (err) {
                     if (err.name !== 'AbortError') {
                         alert('打开文件失败: ' + err.message);
@@ -4756,26 +4771,40 @@
             async function saveMtFile() {
                 try {
                     showSaveStatus();
-                    if (!currentFileHandle) {
-                        let suggestedName = '思维导图.mt';
-                        if (nodesList.length > 0) {
-                            const rootNode = nodesList.find(n => n.parentId === null);
-                            if (rootNode && rootNode.name) {
-                                suggestedName = `${rootNode.name}.mt`;
-                            }
+                    let suggestedName = '思维导图.mt';
+                    if (nodesList.length > 0) {
+                        const rootNode = nodesList.find(n => n.parentId === null);
+                        if (rootNode && rootNode.name) {
+                            suggestedName = `${rootNode.name}.mt`;
                         }
-                        currentFileHandle = await window.showSaveFilePicker({
-                            types: [{
-                                description: '思维导图文件',
-                                accept: { 'text/plain': ['.mt'] }
-                            }],
-                            suggestedName: suggestedName
-                        });
                     }
                     const content = exportToMtText();
-                    const writable = await currentFileHandle.createWritable();
-                    await writable.write(content);
-                    await writable.close();
+                    // Check if File System Access API is supported
+                    if ('showSaveFilePicker' in window) {
+                        if (!currentFileHandle) {
+                            currentFileHandle = await window.showSaveFilePicker({
+                                types: [{
+                                    description: '思维导图文件',
+                                    accept: { 'text/plain': ['.mt'] }
+                                }],
+                                suggestedName: suggestedName
+                            });
+                        }
+                        const writable = await currentFileHandle.createWritable();
+                        await writable.write(content);
+                        await writable.close();
+                    } else {
+                        // Fallback for iOS and other browsers without File System Access API
+                        const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
+                        const url = URL.createObjectURL(blob);
+                        const a = document.createElement('a');
+                        a.href = url;
+                        a.download = suggestedName;
+                        document.body.appendChild(a);
+                        a.click();
+                        document.body.removeChild(a);
+                        URL.revokeObjectURL(url);
+                    }
                     saveMtBtn.disabled = false;
                     isModified = false;
                     updateTitle();
