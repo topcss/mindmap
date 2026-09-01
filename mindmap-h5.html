@@ -4,18 +4,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>思维导图极速版</title>
+    <title>思维导图 H5版</title>
     <style>
         :root { --font-size-base: 14px; --bg-primary: #0b1020; --bg-secondary: #0e1118; --bg-tertiary: rgba(14, 17, 24, 0.55); --bg-card: rgba(0, 0, 0, 0.82); --text-primary: rgba(235, 240, 255, 0.92); --text-secondary: rgba(235, 240, 255, 0.7); --text-muted: rgba(235, 240, 255, 0.5); --border-color: rgba(255, 255, 255, 0.14); --border-hover: rgba(255, 255, 255, 0.22); --accent-color: #00ff88; --accent-bg: rgba(0, 255, 136, 0.12); --accent-border: rgba(0, 255, 136, 0.35); --link-color: #4ea1ff; --warning-color: #ffaa00; --error-color: #ff6666; --success-color: #00ff88; --node-root-bg: #6c5ce7; --node-root-border: #a29bfe; --node-root-text: #ffffff; --node-level1-bg: #4a4e69; --node-level1-border: #6c6f8d; --node-level1-text: #f0f0f0; --node-default-bg: #2d2f4a; --node-default-border: #4a5b8c; --node-default-text: #d4d4d8; --node-selected-bg: #7e68ff; --node-selected-border: #00ff88; --line-color: #4a5b8c; --hover-color: #4a5b8c; --minimap-bg: rgba(13, 17, 23, 0.3); --search-bg: rgba(14, 17, 24, 0.80); --canvas-bg: #0d1117; --btn-bg: rgba(255, 255, 255, 0.06); --btn-hover-bg: rgba(255, 255, 255, 0.09); --btn-hover-bg-strong: rgba(255, 255, 255, 0.12); --btn-active-bg: rgba(255, 255, 255, 0.10); --menu-hover-bg: rgba(255, 255, 255, 0.07); --modal-header-bg: rgba(0, 0, 0, 0.6); --divider-bg: rgba(255, 255, 255, 0.10); --scrollbar-track: rgba(255, 255, 255, 0.06); --scrollbar-thumb: rgba(255, 255, 255, 0.25); --scrollbar-thumb-hover: rgba(255, 255, 255, 0.4); --focus-ring: rgba(255, 255, 255, 0.12); --focus-ring-menu: rgba(255, 255, 255, 0.10); --card-shadow: 0 10px 40px rgba(0, 0, 0, 0.45); --dropdown-shadow: 0 18px 50px rgba(0, 0, 0, 0.6); }
         .theme-light { --bg-primary: #ffffff; --bg-secondary: #f8f9fa; --bg-tertiary: rgba(255, 255, 255, 0.85); --bg-card: rgba(255, 255, 255, 0.95); --text-primary: #1a1a2e; --text-secondary: #4a4a68; --text-muted: #8a8a9a; --border-color: rgba(0, 0, 0, 0.12); --border-hover: rgba(0, 0, 0, 0.2); --accent-color: #00c853; --accent-bg: rgba(0, 200, 83, 0.12); --accent-border: rgba(0, 200, 83, 0.35); --link-color: #1e88e5; --warning-color: #ff9800; --error-color: #f44336; --success-color: #00c853; --node-root-bg: #00af54; --node-root-border: #10b981; --node-root-text: #ffffff; --node-level1-bg: #f1f5f9; --node-level1-border: #94a3b8; --node-level1-text: #1e293b; --node-default-bg: #f1f5f9; --node-default-border: #94a3b8; --node-default-text: #334155; --node-selected-bg: #dbeafe; --node-selected-border: #6b88ff; --line-color: #94a3b8; --hover-color: #94a3b8; --minimap-bg: rgba(241, 245, 249, 0.8); --search-bg: rgba(255, 255, 255, 0.92); --canvas-bg: #f1f5f9; --btn-bg: rgba(0, 0, 0, 0.05); --btn-hover-bg: rgba(0, 0, 0, 0.06); --btn-hover-bg-strong: rgba(0, 0, 0, 0.08); --btn-active-bg: rgba(0, 0, 0, 0.08); --menu-hover-bg: rgba(0, 0, 0, 0.05); --modal-header-bg: rgba(0, 0, 0, 0.05); --divider-bg: rgba(0, 0, 0, 0.10); --scrollbar-track: rgba(0, 0, 0, 0.08); --scrollbar-thumb: rgba(0, 0, 0, 0.35); --scrollbar-thumb-hover: rgba(0, 0, 0, 0.5); --focus-ring: rgba(0, 0, 0, 0.10); --focus-ring-menu: rgba(0, 0, 0, 0.10); --card-shadow: 0 10px 40px rgba(0, 0, 0, 0.15); --dropdown-shadow: 0 18px 50px rgba(0, 0, 0, 0.2); }
         .lucide-icon { display: block; width: 14px; height: 14px; opacity: 0.9; filter: invert(92%); }
         .theme-light .lucide-icon { filter: invert(20%); }
         html, body { margin: 0; padding: 0; overflow: hidden; font-family: 'Segoe UI', 'PingFang SC', Roboto, 'Helvetica Neue', sans-serif; background: var(--bg-primary); }
-        #topbar { position: fixed; top: 12px; left: 50%; transform: translateX(-50%); display: flex; gap: 4px; align-items: start; padding: 4px 6px; z-index: 20; max-width: calc(100vw - 24px); white-space: nowrap; height: auto; min-height: 28px; overflow: visible; background: var(--bg-tertiary); backdrop-filter: blur(10px); border-radius: 48px; border: 1px solid var(--border-color); }
-        .topbar-btn { appearance: none; border: 1px solid var(--accent-border); background: var(--accent-bg); color: var(--text-primary); font-family: monospace; font-size: var(--font-size-base); padding: 6px 10px; border-radius: 12px; cursor: pointer; transition: .2s; white-space: nowrap; flex-shrink: 0; display: inline-flex; align-items: center; gap: 6px; }
-        .topbar-btn:disabled { opacity: 0.45; cursor: not-allowed; }
-        .topbar-btn:hover { background: rgba(0, 255, 136, 0.18); border-color: rgba(0, 255, 136, 0.55); }
-        .topbar-stats { padding: 6px 10px; border-radius: 12px; background: rgba(0, 0, 0, 0.6); border: 1px solid var(--border-color); color: var(--accent-color); font: 700 var(--font-size-base) monospace; white-space: nowrap; position: fixed; bottom: 12px; left: 12px; z-index: 15; }
+        #topbar { display: none; }
+        #top-menu { position: fixed; top: 0; left: 0; right: 0; display: flex; justify-content: flex-end; align-items: center; gap: 2px; padding: 8px 12px; padding-top: max(8px, env(safe-area-inset-top)); z-index: 20; background: rgba(30, 30, 38, 0.85); backdrop-filter: blur(10px); }
+        .top-menu-btn { appearance: none; border: none; background: transparent; color: rgba(255, 255, 255, 0.7); font-family: inherit; font-size: 12px; padding: 6px 10px; border-radius: 6px; cursor: pointer; transition: .15s; display: flex; align-items: center; gap: 4px; }
+        .top-menu-btn:active { background: rgba(255, 255, 255, 0.1); }
+        .top-menu-btn .menu-icon { width: 14px; height: 14px; opacity: 0.8; filter: invert(1); }
+        .top-menu-btn .menu-text { font-size: 11px; }
+        .topbar-stats { padding: 6px 12px; border-radius: 8px; background: rgba(60, 60, 70, 0.7); color: rgba(255, 255, 255, 0.85); font: 500 12px/1.4 system-ui, -apple-system, sans-serif; white-space: nowrap; position: fixed; bottom: 12px; left: 12px; z-index: 15; transition: opacity 0.2s; }
+        .topbar-stats.hidden { opacity: 0; pointer-events: none; }
         .theme-light .topbar-stats { color: #10b981; }
         .menu-btn { appearance: none; border: 1px solid var(--border-color); background: var(--btn-bg); color: var(--text-primary); font-family: inherit; font-size: var(--font-size-base); padding: 6px 10px; text-rendering: optimizeLegibility; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; transform: translateZ(0); backface-visibility: hidden; border-radius: 10px; cursor: pointer; transition: .15s; white-space: nowrap; display: flex; align-items: center; gap: 6px; }
         .menu-btn .menu-caret { width: 12px; height: 12px; opacity: 0.75; margin-left: 1px; transform: translateY(0.5px); transition: transform 0.15s, opacity 0.15s; }
@@ -40,7 +43,7 @@
         .menu-item:disabled:hover .shortcut { color: rgba(235, 240, 255, 0.35); border-color: rgba(255, 255, 255, 0.08); }
         .menu-divider { height: 1px; background: var(--divider-bg); margin: 6px 6px; }
         .menu-container { position: relative; }
-        #search-panel { position: fixed; top: 64px; right: 12px; left: auto; transform: none; z-index: 25; display: grid; grid-template-columns: 156px 34px auto; grid-auto-flow: row; column-gap: 4px; row-gap: 4px; align-items: center; justify-items: start; width: auto; max-width: calc(100vw - 24px); padding: 6px; border-radius: 10px; background: var(--search-bg); border: 1px solid var(--border-color); backdrop-filter: blur(10px); box-shadow: var(--dropdown-shadow); }
+        #search-panel { position: fixed; top: 12px; right: 12px; left: auto; transform: none; z-index: 25; display: grid; grid-template-columns: 156px 34px auto; grid-auto-flow: row; column-gap: 4px; row-gap: 4px; align-items: center; justify-items: start; width: auto; max-width: calc(100vw - 24px); padding: 6px; border-radius: 10px; background: var(--search-bg); border: 1px solid var(--border-color); backdrop-filter: blur(10px); box-shadow: var(--dropdown-shadow); }
         #search-panel,
         #search-panel * { box-sizing: border-box; }
         #search-panel .search-input { width: 156px; min-width: 156px; height: 26px; border-radius: 8px; border: 1px solid var(--border-color); background: var(--btn-bg); color: var(--text-primary); padding: 0 8px; outline: none; font-size: var(--font-size-base); }
@@ -93,12 +96,21 @@
         #about-modal a { color: var(--link-color); text-decoration: none; }
         #about-modal a:hover { text-decoration: underline; }
         .error-message { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: rgba(0, 0, 0, 0.9); color: var(--error-color); padding: 20px; border-radius: 12px; z-index: 100; font-family: monospace; text-align: center; border: 1px solid var(--error-color); }
-        #minimap { position: fixed; bottom: 20px; right: 20px; width: 180px; height: 120px; background: var(--bg-tertiary); backdrop-filter: blur(10px); border-radius: 16px; border: 1px solid var(--border-color); box-shadow: 0 16px 44px rgba(0, 0, 0, 0.55); overflow: hidden; z-index: 10; cursor: crosshair; }
+        #node-action-bar { position: fixed; bottom: 0; left: 0; right: 0; display: none; justify-content: center; align-items: center; gap: 2px; padding: 6px 8px; padding-bottom: max(6px, env(safe-area-inset-bottom)); z-index: 21; background: rgba(40, 40, 48, 0.75); backdrop-filter: blur(8px); border-top: 1px solid rgba(255, 255, 255, 0.06); }
+        #node-action-bar.show { display: flex; }
+        .action-btn { appearance: none; border: none; background: transparent; color: rgba(255, 255, 255, 0.7); font-family: inherit; font-size: 10px; padding: 6px 8px; border-radius: 6px; cursor: pointer; transition: .15s; display: flex; flex-direction: column; align-items: center; gap: 2px; min-width: 40px; }
+        .action-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+        .action-btn:active:not(:disabled) { transform: scale(0.92); background: rgba(255, 255, 255, 0.08); }
+        .action-btn .action-icon { width: 16px; height: 16px; opacity: 0.75; filter: invert(1); }
+        .action-btn .action-label { font-size: 9px; white-space: nowrap; }
+        .action-btn.danger { color: #ff6b6b; }
+        .action-btn.danger .action-icon { filter: invert(65%) sepia(100%) saturate(500%) hue-rotate(340deg); }
+        #minimap { position: fixed; bottom: 80px; right: 12px; width: 120px; height: 90px; background: var(--bg-tertiary); backdrop-filter: blur(10px); border-radius: 16px; border: 1px solid var(--border-color); box-shadow: 0 16px 44px rgba(0, 0, 0, 0.55); overflow: hidden; z-index: 10; cursor: crosshair; }
         .theme-light #minimap { background: rgba(241, 245, 249, 0.9); border-color: rgba(0, 0, 0, 0.12); box-shadow: 0 16px 44px rgba(0, 0, 0, 0.2); }
         #minimap canvas { width: 100%; height: 100%; }
         #minimap .viewport-rect { position: absolute; border: 2px solid rgba(0, 255, 136, 0.85); background: rgba(0, 255, 136, 0.08); pointer-events: none; }
         .theme-light #minimap .viewport-rect { border-color: rgba(0, 200, 83, 0.85); background: rgba(0, 200, 83, 0.08); }
-        #zoom-control { position: fixed; bottom: 20px; right: 212px; background: var(--bg-tertiary); backdrop-filter: blur(10px); border-radius: 12px; border: 1px solid var(--border-color); box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45); padding: 4px; z-index: 10; display: flex; align-items: center; gap: 4px; }
+        #zoom-control { position: fixed; bottom: 100px; right: 160px; background: var(--bg-tertiary); backdrop-filter: blur(10px); border-radius: 12px; border: 1px solid var(--border-color); box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45); padding: 4px; z-index: 10; display: flex; align-items: center; gap: 4px; }
         .theme-light #zoom-control { background: rgba(241, 245, 249, 0.9); border-color: rgba(0, 0, 0, 0.12); box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15); }
         #zoom-control .zoom-btn { width: 28px; height: 28px; border: none; border-radius: 8px; background: var(--btn-bg); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: .2s; }
         .theme-light #zoom-control .zoom-btn { background: var(--btn-bg); }
@@ -132,95 +144,78 @@
     </style>
 </head>
 <body>
-    <div id="topbar">
-        <div class="menu-container">
-            <button class="menu-btn">
-                <img class="lucide-icon" src="https://unpkg.com/lucide-static@1.14.0/icons/file-text.svg" />
-                <span>文件</span>
-                <img class="lucide-icon menu-caret" src="https://unpkg.com/lucide-static@1.14.0/icons/chevron-down.svg" />
-            </button>
-            <div class="menu-dropdown" id="file-menu">
-                <button class="menu-item" id="open-mt-btn"><img class="lucide-icon" src="https://unpkg.com/lucide-static@1.14.0/icons/folder-open.svg" /><span>打开</span><span class="shortcut">Ctrl+O</span></button>
-                <button class="menu-item" id="save-mt-btn"><img class="lucide-icon" src="https://unpkg.com/lucide-static@1.14.0/icons/save.svg" /><span>保存</span><span class="shortcut">Ctrl+S</span></button>
-                <div class="menu-divider"></div>
-                <button class="menu-item" id="import-md-btn"><img class="lucide-icon" src="https://unpkg.com/lucide-static@1.14.0/icons/upload.svg" /><span>导入 Markdown</span></button>
-                <button class="menu-item" id="export-md-btn"><img class="lucide-icon" src="https://unpkg.com/lucide-static@1.14.0/icons/download.svg" /><span>导出 Markdown</span></button>
-                <button class="menu-item" id="export-svg-btn"><img class="lucide-icon" src="https://unpkg.com/lucide-static@1.14.0/icons/file-image.svg" /><span>导出 SVG</span></button>
-                <div class="menu-divider"></div>
-                <button class="menu-item" id="new-node-btn"><img class="lucide-icon" src="https://unpkg.com/lucide-static@1.14.0/icons/file-plus.svg" /><span>新建导图</span></button>
-            </div>
-        </div>
-        <div class="menu-container">
-            <button class="menu-btn">
-                <img class="lucide-icon" src="https://unpkg.com/lucide-static@1.14.0/icons/pencil.svg" />
-                <span>编辑</span>
-                <img class="lucide-icon menu-caret" src="https://unpkg.com/lucide-static@1.14.0/icons/chevron-down.svg" />
-            </button>
-            <div class="menu-dropdown" id="node-menu">
-                <button class="menu-item" id="undo-btn" disabled><img class="lucide-icon" src="https://unpkg.com/lucide-static@1.14.0/icons/undo-2.svg" /><span>撤销</span><span class="shortcut">Ctrl+Z</span></button>
-                <button class="menu-item" id="redo-btn" disabled><img class="lucide-icon" src="https://unpkg.com/lucide-static@1.14.0/icons/redo-2.svg" /><span>重做</span><span class="shortcut">Ctrl+Y</span></button>
-                <div class="menu-divider"></div>
-                <button class="menu-item" id="search-btn"><img class="lucide-icon" src="https://unpkg.com/lucide-static@1.14.0/icons/search.svg" /><span>搜索/替换</span><span class="shortcut">Ctrl+F</span></button>
-                <div class="menu-divider"></div>
-                <button class="menu-item" id="copy-node-btn" disabled><img class="lucide-icon" src="https://unpkg.com/lucide-static@1.14.0/icons/copy.svg" /><span>复制节点</span><span class="shortcut">Ctrl+C</span></button>
-                <button class="menu-item" id="paste-node-btn" disabled><img class="lucide-icon" src="https://unpkg.com/lucide-static@1.14.0/icons/clipboard-paste.svg" /><span>粘贴节点</span><span class="shortcut">Ctrl+V</span></button>
-                <div class="menu-divider"></div>
-                <button class="menu-item" id="add-child-btn" disabled><img class="lucide-icon" src="https://unpkg.com/lucide-static@1.14.0/icons/git-branch-plus.svg" /><span>添加子节点</span><span class="shortcut">Tab</span></button>
-                <button class="menu-item" id="add-sibling-btn" disabled><img class="lucide-icon" src="https://unpkg.com/lucide-static@1.14.0/icons/plus.svg" /><span>添加同级节点</span><span class="shortcut">Enter</span></button>
-                <div class="menu-divider"></div>
-                <button class="menu-item" id="delete-node-btn" disabled><img class="lucide-icon" src="https://unpkg.com/lucide-static@1.14.0/icons/trash-2.svg" /><span>删除节点</span><span class="shortcut">Delete</span></button>
-            </div>
-        </div>
-        <div class="menu-container">
-            <button class="menu-btn">
-                <img class="lucide-icon" src="https://unpkg.com/lucide-static@1.14.0/icons/eye.svg" />
-                <span>视图</span>
-                <img class="lucide-icon menu-caret" src="https://unpkg.com/lucide-static@1.14.0/icons/chevron-down.svg" />
-            </button>
-            <div class="menu-dropdown" id="view-menu">
-                <button class="menu-item" id="theme-toggle-btn"><img class="lucide-icon" src="https://unpkg.com/lucide-static@1.14.0/icons/sun.svg" /><span>切换主题</span></button>
-                <button class="menu-item" id="go-root-btn"><img class="lucide-icon" src="https://unpkg.com/lucide-static@1.14.0/icons/home.svg" /><span>回到根节点</span><span class="shortcut">Home</span></button>
-                <div class="menu-divider"></div>
-                <button class="menu-item" id="collapse-all-btn"><img class="lucide-icon" src="https://unpkg.com/lucide-static@1.14.0/icons/shrink.svg" /><span>折叠所有</span></button>
-                <button class="menu-item" id="expand-all-btn"><img class="lucide-icon" src="https://unpkg.com/lucide-static@1.14.0/icons/expand.svg" /><span>展开所有</span></button>
-                <button class="menu-item" id="expand-level-1"><img class="lucide-icon" src="https://unpkg.com/lucide-static@1.14.0/icons/layers.svg" /><span>展开到第1级</span></button>
-                <button class="menu-item" id="expand-level-2"><img class="lucide-icon" src="https://unpkg.com/lucide-static@1.14.0/icons/layers.svg" /><span>展开到第2级</span></button>
-                <button class="menu-item" id="expand-level-3"><img class="lucide-icon" src="https://unpkg.com/lucide-static@1.14.0/icons/layers.svg" /><span>展开到第3级</span></button>
-                <button class="menu-item" id="expand-level-4"><img class="lucide-icon" src="https://unpkg.com/lucide-static@1.14.0/icons/layers.svg" /><span>展开到第4级</span></button>
-                <button class="menu-item" id="expand-level-5"><img class="lucide-icon" src="https://unpkg.com/lucide-static@1.14.0/icons/layers.svg" /><span>展开到第5级</span></button>
-                <div class="menu-divider"></div>
-                <button class="menu-item" id="toggle-zoom-btn"><img class="lucide-icon" src="https://unpkg.com/lucide-static@1.14.0/icons/zoom-in.svg" /><span>缩放控制</span></button>
-                <button class="menu-item" id="toggle-minimap-btn"><img class="lucide-icon" src="https://unpkg.com/lucide-static@1.14.0/icons/map.svg" /><span>缩略图</span></button>
-                <div class="menu-divider"></div>
-                <button class="menu-item" id="toggle-stats-btn"><img class="lucide-icon" src="https://unpkg.com/lucide-static@1.14.0/icons/bar-chart-3.svg" /><span>节点统计</span></button>
-            </div>
-        </div>
-        <div class="menu-container">
-            <button class="menu-btn">
-                <img class="lucide-icon" src="https://unpkg.com/lucide-static@1.14.0/icons/play.svg" />
-                <span>演示</span>
-                <img class="lucide-icon menu-caret" src="https://unpkg.com/lucide-static@1.14.0/icons/chevron-down.svg" />
-            </button>
-            <div class="menu-dropdown" id="demo-menu">
-                <button class="menu-item" id="example1-btn"><img class="lucide-icon" src="https://unpkg.com/lucide-static@1.14.0/icons/sparkles.svg" /><span>示例1：上帝掷骰子吗？</span></button>
-                <button class="menu-item" id="example2-btn"><img class="lucide-icon" src="https://unpkg.com/lucide-static@1.14.0/icons/brain.svg" /><span>示例2：1000节点</span></button>
-            </div>
-        </div>
-        <div class="menu-container">
-            <button class="menu-btn">
-                <img class="lucide-icon" src="https://unpkg.com/lucide-static@1.14.0/icons/help-circle.svg" />
-                <span>帮助</span>
-                <img class="lucide-icon menu-caret" src="https://unpkg.com/lucide-static@1.14.0/icons/chevron-down.svg" />
-            </button>
-            <div class="menu-dropdown" id="help-menu">
-                <button class="menu-item" id="help-btn"><img class="lucide-icon" src="https://unpkg.com/lucide-static@1.14.0/icons/book-open.svg" /><span>操作说明</span></button>
-                <button class="menu-item" id="api-help-btn"><img class="lucide-icon" src="https://unpkg.com/lucide-static@1.14.0/icons/code.svg" /><span>接口说明</span></button>
-                <div class="menu-divider"></div>
-                <button class="menu-item" id="about-btn"><img class="lucide-icon" src="https://unpkg.com/lucide-static@1.14.0/icons/badge-info.svg" /><span>关于</span></button>
-            </div>
-        </div>
+    <div id="topbar"></div>
+    <div id="top-menu">
+        <button class="top-menu-btn" id="open-mt-btn-h5">
+            <img class="menu-icon" src="https://unpkg.com/lucide-static@1.14.0/icons/folder-open.svg" />
+            <span class="menu-text">打开</span>
+        </button>
+        <button class="top-menu-btn" id="save-mt-btn-h5">
+            <img class="menu-icon" src="https://unpkg.com/lucide-static@1.14.0/icons/save.svg" />
+            <span class="menu-text">保存</span>
+        </button>
+        <button class="top-menu-btn" id="search-btn-h5">
+            <img class="menu-icon" src="https://unpkg.com/lucide-static@1.14.0/icons/search.svg" />
+            <span class="menu-text">搜索</span>
+        </button>
+        <button class="top-menu-btn" id="about-btn-h5">
+            <img class="menu-icon" src="https://unpkg.com/lucide-static@1.14.0/icons/badge-info.svg" />
+            <span class="menu-text">关于</span>
+        </button>
     </div>
-    <div id="stats" class="topbar-stats panel-hidden">初始化中...</div>
+    <div id="node-action-bar">
+        <button class="action-btn" id="edit-node-btn">
+            <img class="action-icon" src="https://unpkg.com/lucide-static@1.14.0/icons/pencil.svg" />
+            <span class="action-label">编辑</span>
+        </button>
+        <button class="action-btn" id="copy-node-btn-h5" disabled>
+            <img class="action-icon" src="https://unpkg.com/lucide-static@1.14.0/icons/copy.svg" />
+            <span class="action-label">复制</span>
+        </button>
+        <button class="action-btn" id="paste-node-btn-h5" disabled>
+            <img class="action-icon" src="https://unpkg.com/lucide-static@1.14.0/icons/clipboard-paste.svg" />
+            <span class="action-label">粘贴</span>
+        </button>
+        <button class="action-btn" id="add-child-btn-h5" disabled>
+            <img class="action-icon" src="https://unpkg.com/lucide-static@1.14.0/icons/git-branch-plus.svg" />
+            <span class="action-label">子节点</span>
+        </button>
+        <button class="action-btn" id="add-sibling-btn-h5" disabled>
+            <img class="action-icon" src="https://unpkg.com/lucide-static@1.14.0/icons/plus.svg" />
+            <span class="action-label">同级</span>
+        </button>
+        <button class="action-btn danger" id="delete-node-btn-h5" disabled>
+            <img class="action-icon" src="https://unpkg.com/lucide-static@1.14.0/icons/trash-2.svg" />
+            <span class="action-label">删除</span>
+        </button>
+    </div>
+    <div id="hidden-buttons" style="display:none">
+        <button id="open-mt-btn"></button>
+        <button id="save-mt-btn"></button>
+        <button id="import-md-btn"></button>
+        <button id="export-md-btn"></button>
+        <button id="export-svg-btn"></button>
+        <button id="new-node-btn"></button>
+        <button id="copy-node-btn"></button>
+        <button id="paste-node-btn"></button>
+        <button id="search-btn"></button>
+        <button id="help-btn"></button>
+        <button id="api-help-btn"></button>
+        <button id="about-btn"></button>
+        <button id="theme-toggle-btn"></button>
+        <button id="go-root-btn"></button>
+        <button id="collapse-all-btn"></button>
+        <button id="expand-all-btn"></button>
+        <button id="toggle-zoom-btn"></button>
+        <button id="toggle-minimap-btn"></button>
+        <button id="toggle-stats-btn"></button>
+        <button id="example1-btn"></button>
+        <button id="example2-btn"></button>
+        <button id="add-child-btn"></button>
+        <button id="add-sibling-btn"></button>
+        <button id="delete-node-btn"></button>
+    </div>
+    <div id="stats" class="topbar-stats">初始化中...</div>
     <div id="save-overlay" class="save-overlay">
         <div class="save-content">
             <img class="save-icon" src="https://unpkg.com/lucide-static@1.14.0/icons/loader-circle.svg" />
@@ -784,6 +779,281 @@
                     setRenderDegraded(false);
                 }
             });
+            // ========== Touch events for H5 ==========
+            let touchStartTime = 0;
+            let lastTapTime = 0;
+            let lastTapNode = null;
+            let pinchStartDistance = 0;
+            let pinchStartScale = 1;
+            let touchStartPos = { x: 0, y: 0 };
+            let isTouchPanning = false;
+            app.view.addEventListener('touchstart', (e) => {
+                if (e.touches.length === 1) {
+                    const touch = e.touches[0];
+                    touchStartTime = Date.now();
+                    touchStartPos = { x: touch.clientX, y: touch.clientY };
+                    const { x: mouseX, y: mouseY } = clientToCanvasPoint(touch.clientX, touch.clientY);
+                    const localPos = container.toLocal({ x: mouseX, y: mouseY });
+                    let nodeFound = null;
+                    for (const [, nodeContainer] of nodeGraphics) {
+                        if (!nodeContainer.visible) continue;
+                        const nodeX = nodeContainer.x;
+                        const nodeY = nodeContainer.y;
+                        const halfW = nodeContainer._nodeData.width / 2;
+                        const halfH = nodeContainer._nodeData.height / 2;
+                        if (localPos.x >= nodeX - halfW && localPos.x <= nodeX + halfW &&
+                            localPos.y >= nodeY - halfH && localPos.y <= nodeY + halfH) {
+                            nodeFound = nodeContainer;
+                            break;
+                        }
+                    }
+                    if (nodeFound) {
+                        const now = Date.now();
+                        const isDoubleClick = now - lastTapTime < 300 && lastTapNode === nodeFound;
+                        lastTapTime = now;
+                        lastTapNode = nodeFound;
+                        if (isDoubleClick) {
+                            e.preventDefault();
+                            const n = findNodeById(nodeFound._nodeData.nodeId);
+                            if (n) startNodeEdit(n, nodeFound);
+                        } else {
+                            selectSingleNode(nodeFound);
+                            currentSelectedNode = nodeFound;
+                            refreshTopbarStats();
+                            startNodeDragIfAllowed(findNodeById(nodeFound._nodeData.nodeId));
+                        }
+                    } else {
+                        clearAllSelections();
+                        refreshTopbarStats();
+                        isTouchPanning = true;
+                        lastDragPoint = { x: mouseX, y: mouseY };
+                    }
+                } else if (e.touches.length === 2) {
+                    e.preventDefault();
+                    isTouchPanning = false;
+                    const dx = e.touches[0].clientX - e.touches[1].clientX;
+                    const dy = e.touches[0].clientY - e.touches[1].clientY;
+                    pinchStartDistance = Math.sqrt(dx * dx + dy * dy);
+                    pinchStartScale = container.scale.x;
+                }
+            }, { passive: false });
+            app.view.addEventListener('touchmove', (e) => {
+                e.preventDefault();
+                if (e.touches.length === 1 && !editingInput) {
+                    const touch = e.touches[0];
+                    const { x: mouseX, y: mouseY } = clientToCanvasPoint(touch.clientX, touch.clientY);
+                    if (isTouchPanning) {
+                        const dx = mouseX - lastDragPoint.x;
+                        const dy = mouseY - lastDragPoint.y;
+                        if (canDrag(dx, dy)) {
+                            container.x += dx;
+                            container.y += dy;
+                            lastDragPoint = { x: mouseX, y: mouseY };
+                            updateViewportClipping();
+                        }
+                    }
+                    if (nodeDnd.pending || nodeDnd.active) {
+                        const g = { x: touch.clientX, y: touch.clientY };
+                        if (!nodeDnd.startGlobal) nodeDnd.startGlobal = { x: g.x, y: g.y };
+                        nodeDnd.lastGlobal = { x: g.x, y: g.y };
+                        const moveDx = nodeDnd.lastGlobal.x - nodeDnd.startGlobal.x;
+                        const moveDy = nodeDnd.lastGlobal.y - nodeDnd.startGlobal.y;
+                        const moved = moveDx * moveDx + moveDy * moveDy;
+                        if (!nodeDnd.active && moved > 36) {
+                            nodeDnd.active = true;
+                            suppressClickUntil = Date.now() + 250;
+                        }
+                        if (nodeDnd.active) {
+                            const localPoint = container.toLocal(nodeDnd.lastGlobal);
+                            nodeDnd.candidate = computeDropCandidate(localPoint);
+                            renderDndPreview(localPoint);
+                        }
+                    }
+                } else if (e.touches.length === 2) {
+                    const dx = e.touches[0].clientX - e.touches[1].clientX;
+                    const dy = e.touches[0].clientY - e.touches[1].clientY;
+                    const currentDistance = Math.sqrt(dx * dx + dy * dy);
+                    if (pinchStartDistance > 0) {
+                        const newScale = pinchStartScale * (currentDistance / pinchStartDistance);
+                        updateZoom(newScale);
+                    }
+                }
+            }, { passive: false });
+            app.view.addEventListener('touchend', (e) => {
+                if (e.touches.length === 0) {
+                    isTouchPanning = false;
+                    if (nodeDnd.pending || nodeDnd.active) {
+                        endNodeDnd(true);
+                    }
+                }
+            });
+            // Long press to edit node
+            let longPressTimer = null;
+            let longPressNode = null;
+            function startLongPress(nodeContainer) {
+                longPressNode = nodeContainer;
+                longPressTimer = setTimeout(() => {
+                    if (longPressNode) {
+                        const n = findNodeById(longPressNode._nodeData.nodeId);
+                        if (n) startNodeEdit(n, longPressNode);
+                    }
+                    longPressNode = null;
+                    longPressTimer = null;
+                }, 500);
+            }
+            function cancelLongPress() {
+                if (longPressTimer) {
+                    clearTimeout(longPressTimer);
+                    longPressTimer = null;
+                }
+                longPressNode = null;
+            }
+            app.view.addEventListener('touchstart', (e) => {
+                if (e.touches.length === 1) {
+                    const touch = e.touches[0];
+                    const { x: mouseX, y: mouseY } = clientToCanvasPoint(touch.clientX, touch.clientY);
+                    const localPos = container.toLocal({ x: mouseX, y: mouseY });
+                    for (const [, nodeContainer] of nodeGraphics) {
+                        if (!nodeContainer.visible) continue;
+                        const nodeX = nodeContainer.x;
+                        const nodeY = nodeContainer.y;
+                        const halfW = nodeContainer._nodeData.width / 2;
+                        const halfH = nodeContainer._nodeData.height / 2;
+                        if (localPos.x >= nodeX - halfW && localPos.x <= nodeX + halfW &&
+                            localPos.y >= nodeY - halfH && localPos.y <= nodeY + halfH) {
+                            startLongPress(nodeContainer);
+                            break;
+                        }
+                    }
+                }
+            }, { passive: true });
+            app.view.addEventListener('touchmove', () => cancelLongPress());
+            app.view.addEventListener('touchend', () => cancelLongPress());
+            app.view.addEventListener('touchcancel', () => {
+                isTouchPanning = false;
+                endNodeDnd(false);
+            });
+            // ========== H5: Node action bar and stats visibility ==========
+            const nodeActionBar = document.getElementById('node-action-bar');
+            const editNodeBtn = document.getElementById('edit-node-btn');
+            const copyNodeBtnH5 = document.getElementById('copy-node-btn-h5');
+            const pasteNodeBtnH5 = document.getElementById('paste-node-btn-h5');
+            const addChildBtnH5 = document.getElementById('add-child-btn-h5');
+            const addSiblingBtnH5 = document.getElementById('add-sibling-btn-h5');
+            const deleteNodeBtnH5 = document.getElementById('delete-node-btn-h5');
+            function showNodeActionBar() {
+                if (nodeActionBar) nodeActionBar.classList.add('show');
+                if (!statsDiv) statsDiv = document.getElementById('stats');
+                if (statsDiv) statsDiv.classList.add('hidden');
+            }
+            function hideNodeActionBar() {
+                if (nodeActionBar) nodeActionBar.classList.remove('show');
+                if (!statsDiv) statsDiv = document.getElementById('stats');
+                if (statsDiv) statsDiv.classList.remove('hidden');
+            }
+            function updateNodeActionBarButtons() {
+                const hasSelection = selectedNodeIds && selectedNodeIds.size > 0;
+                const hasNonRootSelection = hasSelection && (() => {
+                    const nodeById = buildNodeByIdMap();
+                    for (const id of selectedNodeIds) {
+                        const node = nodeById.get(id);
+                        if (node && node.parentId !== null) return true;
+                    }
+                    return false;
+                })();
+                if (editNodeBtn) editNodeBtn.disabled = !hasSelection;
+                if (copyNodeBtnH5) copyNodeBtnH5.disabled = !hasSelection;
+                if (pasteNodeBtnH5) pasteNodeBtnH5.disabled = !copiedNodeText;
+                if (addChildBtnH5) addChildBtnH5.disabled = !hasSelection;
+                if (addSiblingBtnH5) addSiblingBtnH5.disabled = !hasNonRootSelection;
+                if (deleteNodeBtnH5) deleteNodeBtnH5.disabled = !hasNonRootSelection;
+            }
+            function handleEditNode() {
+                if (!currentSelectedNode) return;
+                const n = findNodeById(currentSelectedNode._nodeData.nodeId);
+                if (n) startNodeEdit(n, currentSelectedNode);
+            }
+            function handleCopyNodeH5() {
+                if (!selectedNodeIds || selectedNodeIds.size === 0) return;
+                copiedNodeText = buildSelectedForestText();
+                updateNodeActionBarButtons();
+            }
+            function handlePasteNodeH5() {
+                if (!copiedNodeText) return;
+                const nodeData = getCurrentNodeData();
+                if (!nodeData) return;
+                pasteTextAsChildren(nodeData, copiedNodeText).then(result => {
+                    if (result && result.firstCreatedNode) {
+                        focusNodeById(result.firstCreatedNode.id, true, true);
+                    }
+                });
+            }
+            function handleAddChildH5() {
+                if (!currentSelectedNode) return;
+                const nodeId = currentSelectedNode._nodeData.nodeId;
+                const parentNode = findNodeById(nodeId);
+                addChildNodeAndEdit(parentNode);
+            }
+            function handleAddSiblingH5() {
+                if (!currentSelectedNode) return;
+                const nodeId = currentSelectedNode._nodeData.nodeId;
+                const node = findNodeById(nodeId);
+                addSiblingNodeAndEdit(node);
+            }
+            function handleDeleteNodeH5() {
+                deleteSelectedNodes();
+                hideNodeActionBar();
+            }
+            if (editNodeBtn) editNodeBtn.addEventListener('click', handleEditNode);
+            if (copyNodeBtnH5) copyNodeBtnH5.addEventListener('click', handleCopyNodeH5);
+            if (pasteNodeBtnH5) pasteNodeBtnH5.addEventListener('click', handlePasteNodeH5);
+            if (addChildBtnH5) addChildBtnH5.addEventListener('click', handleAddChildH5);
+            if (addSiblingBtnH5) addSiblingBtnH5.addEventListener('click', handleAddSiblingH5);
+            if (deleteNodeBtnH5) deleteNodeBtnH5.addEventListener('click', handleDeleteNodeH5);
+            // H5: Top menu handlers
+            const openMtBtnH5 = document.getElementById('open-mt-btn-h5');
+            const saveMtBtnH5 = document.getElementById('save-mt-btn-h5');
+            const searchBtnH5 = document.getElementById('search-btn-h5');
+            const aboutBtnH5 = document.getElementById('about-btn-h5');
+            if (openMtBtnH5) openMtBtnH5.addEventListener('click', () => openMtFile());
+            if (saveMtBtnH5) saveMtBtnH5.addEventListener('click', () => saveMtFile());
+            if (searchBtnH5) searchBtnH5.addEventListener('click', () => openSearchPanel());
+            if (aboutBtnH5) aboutBtnH5.addEventListener('click', () => {
+                const aboutModal = document.getElementById('about-modal');
+                if (aboutModal) aboutModal.classList.remove('panel-hidden');
+            });
+            // Track selection changes to show/hide node action bar
+            let lastSelectedCount = 0;
+            function checkSelectionChanged() {
+                const currentCount = selectedNodeIds ? selectedNodeIds.size : 0;
+                if (currentCount !== lastSelectedCount) {
+                    lastSelectedCount = currentCount;
+                    if (currentCount > 0) {
+                        showNodeActionBar();
+                        updateNodeActionBarButtons();
+                    } else {
+                        hideNodeActionBar();
+                    }
+                }
+            }
+            // Override clearAllSelections to trigger UI update
+            const originalClearAllSelections = clearAllSelections;
+            clearAllSelections = function() {
+                originalClearAllSelections();
+                checkSelectionChanged();
+            };
+            // Override selectNode to trigger UI update
+            const originalSelectNode = selectNode;
+            selectNode = function(node) {
+                originalSelectNode(node);
+                checkSelectionChanged();
+            };
+            // Override deselectNode to trigger UI update
+            const originalDeselectNode = deselectNode;
+            deselectNode = function(node) {
+                originalDeselectNode(node);
+                checkSelectionChanged();
+            };
             // ========== 左键交互：矩形选择框 + 节点单选 ==========
             let selectedNodes = new Set();
             let selectedNodeIds = new Set();
@@ -3359,7 +3629,8 @@
                         if (existing) existing.visible = false;
                         continue;
                     }
-                    const shouldShow = !!node.collapsed || collapseHoverNodeId === node.id;
+                    // H5: Show collapse badges by default for all nodes with children
+                    const shouldShow = true;
                     const existing = collapseBadgeById.get(node.id);
                     if (!shouldShow) {
                         if (existing) existing.visible = false;
@@ -4976,16 +5247,7 @@
             function refreshTopbarStats() {
                 if (!statsDiv) statsDiv = document.getElementById('stats');
                 if (!statsDiv) return;
-                const lineCount = nodesList.length - 1;
-                const selectedCount = selectedNodeIds ? selectedNodeIds.size : 0;
-                statsDiv.textContent = `节点: ${selectedCount}/${actualCount} 连线: ${lineCount} 帧率: ${lastFps}`;
-                if (lastFps >= 55) {
-                    statsDiv.style.color = 'green';
-                } else if (lastFps >= 30) {
-                    statsDiv.style.color = 'orange';
-                } else {
-                    statsDiv.style.color = 'red';
-                }
+                statsDiv.textContent = `节点数：${actualCount}`;
                 if (uiReady) {
                     if (typeof updateAddNodeButtons === 'function') {
                         updateAddNodeButtons();
